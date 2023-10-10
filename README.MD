@@ -1,5 +1,7 @@
 # Housing Records for Quasar Housing by Brown Development
 
+# Check Out My Tebex for more dope scripts for a GOOD price: https://brown-development.tebex.io/
+
 **I HAVE NO AFFILIATION WITH Quasar Scripts**
 
 **Preview Video Of The Loaf Housing Version I made (Works the Same):** https://www.youtube.com/watch?v=sGopSDEcFJ8
