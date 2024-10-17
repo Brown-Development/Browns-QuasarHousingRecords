@@ -1,6 +1,6 @@
 Config = {}
 
-Config.FrameWork
+Config.FrameWork = 'qb' -- 'qb' or 'esx'
 Config.Menu = 'qb-menu' -- 'qb-menu' or 'ox_lib'
 Config.Notifications = 'qb' -- 'qb', 'ox', or 'okok'
 Config.Target = 'qb' -- 'qb' or 'ox'
