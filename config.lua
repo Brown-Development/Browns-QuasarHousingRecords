@@ -1,9 +1,9 @@
 Config = {}
 
-Config.FrameWork = 'qb' -- 'qb' or 'esx'
-Config.Menu = 'qb-menu' -- 'qb-menu' or 'ox_lib'
-Config.Notifications = 'qb' -- 'qb', 'ox', or 'okok'
-Config.Target = 'qb' -- 'qb' or 'ox'
+Config.FrameWork = 'esx' -- 'qb' or 'esx'
+Config.Menu = 'ox_lib' -- 'qb-menu' or 'ox_lib'
+Config.Notifications = 'ox' -- 'qb', 'ox', or 'okok'
+Config.Target = 'ox' -- 'qb' or 'ox'
 
 -- Targetable Locations to open the Housing Records Menu (locked to specified jobs)
 Config.Locations = { 
@@ -12,3 +12,5 @@ Config.Locations = {
     -- {coords = vector3(0, 0, 0), jobname = 'sheriff', uniqueName = 'sheriffrecords'},
     -- add as many as you want
 }
+
+Config.Debug = false
