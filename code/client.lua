@@ -38,6 +38,7 @@ for _, targets in ipairs(Config.Locations) do
         })
     end
 end
+
 RegisterNetEvent('showMenu', function(data)
     if Config.Menu == 'qb-menu' then 
         local menuItems = {
@@ -53,42 +54,52 @@ RegisterNetEvent('showMenu', function(data)
             local id = row.houseID
             local xcoords = row.x
             local ycoords = row.y
-            local menuItem = {
-                header = 'Owner: '..name .. ' (House ID: ' .. id..')',
-                txt = 'Set Waypoint to House',
-                icon = 'fas fa-map-marker-alt',
-                params = {
+
+            if xcoords and ycoords then
+                local menuItem = {
+                    header = 'Owner: '..name .. ' (House ID: ' .. id..')',
+                    txt = 'Set Waypoint to House',
+                    icon = 'fas fa-map-marker-alt',
+                    params = {
+                        event = 'SetWaypointToCoord',
+                        args = {
+                            x = xcoords,
+                            y = ycoords,
+                        }
+                    }
+                }
+                table.insert(menuItems, menuItem)
+            end
+        end
+        exports['qb-menu']:openMenu(menuItems)
+    elseif Config.Menu == 'ox_lib' then 
+        local contextOptions = {}
+
+        for i = 1, #data do
+            local row = data[i]
+            local name = row.playername or 'Unknown'
+            local id = row.id or 'N/A'
+            local xcoords = row.x
+            local ycoords = row.y
+
+            debugcode(json.encode(row))
+            
+            if xcoords and ycoords then
+                local contextItem = {
+                    title = 'Owner: ' .. name .. '\n' .. ' House ID: ' .. id,
+                    description = 'Set Waypoint to House',
+                    icon = 'fa-solid fa-house',
                     event = 'SetWaypointToCoord',
+                    arrow = true,
                     args = {
                         x = xcoords,
                         y = ycoords,
                     }
                 }
-            }
-            table.insert(menuItems, menuItem)
+                table.insert(contextOptions, contextItem)
+            end
         end
-        exports['qb-menu']:openMenu(menuItems)
-    elseif Config.Menu == 'ox_lib' then 
-        local contextOptions = {}
-        for i = 1, #data do
-            local row = data[i]
-            local name = row.playername
-            local id = row.houseID
-            local xcoords = row.x
-            local ycoords = row.y
-            local contextItem = {
-                title = 'Owner: '..name .. '\n' .. ' House ID: ' .. id,
-                description = 'Set Waypoint to House',
-                icon = 'fa-solid fa-house',
-                event = 'SetWaypointToCoord',
-                arrow = true,
-                args = {
-                    x = xcoords,
-                    y = ycoords,
-                }
-            }
-            table.insert(contextOptions, contextItem)
-        end
+
         lib.registerContext({
             id = 'housingrecords',
             title = 'Housing Records',
@@ -97,6 +108,8 @@ RegisterNetEvent('showMenu', function(data)
         lib.showContext('housingrecords')
     end
 end)
+
+
 RegisterNetEvent('SetWaypointToCoord', function(data)
     local x = tonumber(data.x)
     local y = tonumber(data.y)
@@ -116,5 +129,11 @@ function Notify()
         })
     elseif Config.Notifications == 'okok' then 
         exports['okokNotify']:Alert('Housing Records', 'House Waypoint Set, Check your GPS', 10000, 'success', true)
+    end
+end
+
+local function debugcode(message)
+    if Config.Debug then 
+        print(message)
     end
 end
