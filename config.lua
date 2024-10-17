@@ -1,8 +1,6 @@
 Config = {}
 
--- ** THIS VERSION ONLY SUPPORTS QBCORE **
--- ** IF YOU WANT A ESX VERSION CONTACT ME ON DISCORD: @bwobrown **
-
+Config.FrameWork
 Config.Menu = 'qb-menu' -- 'qb-menu' or 'ox_lib'
 Config.Notifications = 'qb' -- 'qb', 'ox', or 'okok'
 Config.Target = 'qb' -- 'qb' or 'ox'
